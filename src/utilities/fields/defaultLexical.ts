@@ -6,38 +6,39 @@ import {
   ParagraphFeature,
   lexicalEditor,
   UnderlineFeature,
-  EXPERIMENTAL_TableFeature,
-  UploadFeature,
-  BlocksFeature,
   AlignFeature,
+  UploadFeature,
   HeadingFeature,
-  ChecklistFeature,
   SubscriptFeature,
+  SuperscriptFeature,
+  InlineCodeFeature,
+  IndentFeature,
+  ChecklistFeature,
+  HorizontalRuleFeature,
+  StrikethroughFeature,
   BlockquoteFeature,
-  FixedToolbarFeature,
-  InlineToolbarFeature,
+  UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 import { link } from './link'
-import { Banner } from '@/blocks/Banner/config'
-import { Code } from '@/blocks/Code/config'
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: ({ defaultFeatures }) => [
-    ...defaultFeatures.filter((feature) => feature.key !== 'link'),
-    FixedToolbarFeature(),
-    InlineToolbarFeature(),
-    HeadingFeature({
-      enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-    }),
-    ChecklistFeature(),
-    SubscriptFeature(),
-    BlockquoteFeature(),
-    AlignFeature(),
+    ...defaultFeatures,
+    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }),
     ParagraphFeature(),
     UnderlineFeature(),
     BoldFeature(),
     ItalicFeature(),
-    EXPERIMENTAL_TableFeature(),
+    AlignFeature(),
+    SubscriptFeature(),
+    SuperscriptFeature(),
+    InlineCodeFeature(),
+    IndentFeature(),
+    ChecklistFeature(),
+    HorizontalRuleFeature(),
+    StrikethroughFeature(),
+    BlockquoteFeature(),
+    UnorderedListFeature(),
     UploadFeature({
       collections: {
         media: {
@@ -87,23 +88,6 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
           },
         ]
       },
-    }),
-    BlocksFeature({
-      blocks: [
-        {
-          slug: 'br',
-          fields: [
-            {
-              name: 'ignore',
-              type: 'text',
-            },
-          ],
-
-          interfaceName: 'BrBlock',
-        },
-        Banner,
-        Code,
-      ],
     }),
   ],
 })

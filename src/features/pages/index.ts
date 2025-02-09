@@ -19,6 +19,7 @@ import {
 import { populatePublishedAt } from '@/utilities/hooks/populatePublishedAt'
 import { slugField } from '@/utilities/fields/slug'
 import { hero } from '@/components/heros/config'
+import { Github } from '@/blocks/GithubBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -74,7 +75,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Github],
               required: true,
               admin: {
                 initCollapsed: true,
@@ -133,6 +134,5 @@ export const Pages: CollectionConfig<'pages'> = {
       },
       schedulePublish: true,
     },
-    maxPerDoc: 50,
   },
 }

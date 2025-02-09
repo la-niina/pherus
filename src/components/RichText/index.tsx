@@ -40,11 +40,10 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   ...LinkJSXConverter({ internalDocToHref }),
   blocks: {
     banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
-    br: () => <br />,
     mediaBlock: ({ node }) => (
       <MediaBlock
         className="col-start-1 col-span-3"
-        imgClassName="m-0"
+        imgClassName="m-0 rounded-md"
         {...node.fields}
         captionClassName="mx-auto max-w-[48rem]"
         enableGutter={false}
