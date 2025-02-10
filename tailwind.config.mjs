@@ -13,6 +13,12 @@ const config = {
   plugins: [tailwindcssAnimate, typography],
   prefix: '',
   safelist: [
+    'hsl(var(--chart-1))',
+    'hsl(var(--chart-2))',
+    'hsl(var(--chart-3))',
+    'hsl(var(--chart-4))',
+    'hsl(var(--chart-5))',
+    'hsl(var(--chart-6))',
     'lg:col-span-4',
     'lg:col-span-6',
     'lg:col-span-8',

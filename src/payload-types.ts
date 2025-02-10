@@ -147,7 +147,7 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | GithubBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | GithubBlock | ChartBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -202,6 +202,8 @@ export interface Post {
     | {
         id?: string | null;
         name?: string | null;
+        email?: string | null;
+        avatar?: string | null;
       }[]
     | null;
   slug?: string | null;
@@ -735,6 +737,32 @@ export interface GithubBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ChartBlock".
+ */
+export interface ChartBlock {
+  chatType?: ('line' | 'bar' | 'pie') | null;
+  layoutType?: ('inner' | 'outer') | null;
+  chartConfig?:
+    | {
+        label?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  chartData?:
+    | {
+        label?: string | null;
+        value?: number | null;
+        fill?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'charts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1038,6 +1066,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         githubBlock?: T | GithubBlockSelect<T>;
+        charts?: T | ChartBlockSelect<T>;
       };
   meta?:
     | T
@@ -1157,6 +1186,31 @@ export interface GithubBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ChartBlock_select".
+ */
+export interface ChartBlockSelect<T extends boolean = true> {
+  chatType?: T;
+  layoutType?: T;
+  chartConfig?:
+    | T
+    | {
+        label?: T;
+        color?: T;
+        id?: T;
+      };
+  chartData?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        fill?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1179,6 +1233,8 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         id?: T;
         name?: T;
+        email?: T;
+        avatar?: T;
       };
   slug?: T;
   slugLock?: T;

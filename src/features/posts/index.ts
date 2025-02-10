@@ -25,6 +25,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/utilities/fields/slug'
+import { Charts } from '@/blocks/ChartBlock/config'
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
@@ -91,7 +92,7 @@ export const Posts: CollectionConfig<'posts'> = {
                   return [
                     ...rootFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                    BlocksFeature({ blocks: [Banner, Code, MediaBlock, Charts] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),
@@ -212,6 +213,14 @@ export const Posts: CollectionConfig<'posts'> = {
         },
         {
           name: 'name',
+          type: 'text',
+        },
+        {
+          name: 'email',
+          type: 'email',
+        },
+        {
+          name: 'avatar',
           type: 'text',
         },
       ],

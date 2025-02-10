@@ -1,3 +1,4 @@
+import { getImageURL } from '@/utilities/getImageURL'
 import type { CollectionAfterReadHook } from 'payload'
 import { User } from 'src/payload-types'
 
@@ -5,6 +6,7 @@ import { User } from 'src/payload-types'
 // This means that we need to populate the authors manually here to protect user privacy
 // GraphQL will not return mutated user data that differs from the underlying schema
 // So we use an alternative `populatedAuthors` field to populate the user data, hidden from the admin UI
+
 export const populateAuthors: CollectionAfterReadHook = async ({ doc, req, req: { payload } }) => {
   if (doc?.authors) {
     const authorDocs: User[] = []
@@ -22,10 +24,15 @@ export const populateAuthors: CollectionAfterReadHook = async ({ doc, req, req: 
       }
     }
 
-    doc.populatedAuthors = authorDocs.map((authorDoc) => ({
-      id: authorDoc.id,
-      name: authorDoc.name,
-    }))
+    doc.populatedAuthors = authorDocs.map((authorDoc) => {
+      let url = getImageURL(authorDoc.avatar)
+      return {
+        id: authorDoc.id,
+        name: authorDoc.username,
+        email: authorDoc.email,
+        avatar: url,
+      }
+    })
   }
 
   return doc
