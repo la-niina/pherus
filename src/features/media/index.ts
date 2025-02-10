@@ -27,6 +27,13 @@ export const Media: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'prefix',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'caption',
       type: 'richText',
       admin: {

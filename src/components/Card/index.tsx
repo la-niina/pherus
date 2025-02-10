@@ -32,23 +32,30 @@ export const Card: React.FC<{
   return (
     <article
       className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer',
+        'border border-border rounded-2xl overflow-hidden bg-card hover:cursor-pointer',
         className,
       )}
       ref={card.ref}
     >
       <div className="relative w-full ">
         {!metaImage && <div className="">No image</div>}
-        {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
+        {metaImage && typeof metaImage !== 'string' && (
+          <Media
+            className=""
+            imgClassName="rounded-xl md:h-[10rem]"
+            resource={metaImage}
+            size="33vw"
+          />
+        )}
       </div>
       <div className="p-4">
         {showTags && hasTags && (
-          <div className="uppercase text-sm mb-4">
+          <div className="text-xs mb-2">
             {showTags && hasTags && (
               <div>
-                {tags?.map((tags, index) => {
-                  if (typeof tags === 'object') {
-                    const { title: titleFromTags } = tags
+                {tags?.map((tag, index) => {
+                  if (typeof tag === 'object') {
+                    const { title: titleFromTags } = tag
 
                     const tagsTitle = titleFromTags || 'Untitled category'
 
@@ -69,15 +76,21 @@ export const Card: React.FC<{
           </div>
         )}
         {titleToUse && (
-          <div className="prose">
-            <h3>
+          <div className="text-pretty">
+            <h3 className={cn('text-sm font-bold')}>
               <Link className="not-prose" href={href} ref={link.ref}>
                 {titleToUse}
               </Link>
             </h3>
           </div>
         )}
-        {description && <div className="mt-2">{description && <p>{sanitizedDescription}</p>}</div>}
+        {description && (
+          <div className="text-sm font-light mt-2">
+            {description && (
+              <p className="text-sm font-light line-clamp-3">{sanitizedDescription}</p>
+            )}
+          </div>
+        )}
       </div>
     </article>
   )

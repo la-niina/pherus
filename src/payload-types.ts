@@ -219,6 +219,7 @@ export interface Post {
 export interface Media {
   id: string;
   alt?: string | null;
+  prefix?: string | null;
   caption?: {
     root: {
       type: string;
@@ -1248,6 +1249,7 @@ export interface PostsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
   caption?: T;
   updatedAt?: T;
   createdAt?: T;
