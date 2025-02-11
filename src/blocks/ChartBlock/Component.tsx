@@ -1,6 +1,5 @@
 'use client'
 
-import { Card, CardContent } from '@/components/ui/card'
 import {
   ChartConfig,
   ChartContainer,
@@ -9,7 +8,6 @@ import {
 } from '@/components/ui/chart'
 import type { ChartBlock as ChartBlockProps } from '@/payload-types'
 import { cn } from '@/utilities/ui'
-import { TrendingUp } from 'lucide-react'
 import React from 'react'
 import {
   Bar,

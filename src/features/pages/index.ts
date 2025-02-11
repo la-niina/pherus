@@ -21,6 +21,7 @@ import { slugField } from '@/utilities/fields/slug'
 import { hero } from '@/components/heros/config'
 import { Github } from '@/blocks/GithubBlock/config'
 import { Charts } from '@/blocks/ChartBlock/config'
+import { Cards } from '@/blocks/CardBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -76,7 +77,16 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Github, Charts],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                Github,
+                Charts,
+                Cards,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

@@ -77,7 +77,7 @@ export const Card: React.FC<{
         )}
         {titleToUse && (
           <div className="text-pretty">
-            <h3 className={cn('text-sm font-bold')}>
+            <h3 className={cn('text-sm font-bold line-clamp-1')}>
               <Link className="not-prose" href={href} ref={link.ref}>
                 {titleToUse}
               </Link>
@@ -85,9 +85,11 @@ export const Card: React.FC<{
           </div>
         )}
         {description && (
-          <div className="text-sm font-light mt-2">
+          <div className="text-xs font-light mt-2">
             {description && (
-              <p className="text-sm font-light line-clamp-3">{sanitizedDescription}</p>
+              <p className="text-xs font-light line-clamp-2 md:line-clamp-3">
+                {sanitizedDescription}
+              </p>
             )}
           </div>
         )}

@@ -13,6 +13,7 @@ import {
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 import { ChartBlock, ChartBlockPropper } from '@/blocks/ChartBlock/Component'
+import { CardBlock, CardBlockProps } from '@/blocks/CardBlock/Component'
 
 import type {
   BannerBlock as BannerBlockProps,
@@ -26,7 +27,12 @@ import { cn } from '@/utilities/ui'
 type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-      CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | ChartBlockPropper
+      | CTABlockProps
+      | MediaBlockProps
+      | BannerBlockProps
+      | CodeBlockProps
+      | ChartBlockPropper
+      | CardBlockProps
     >
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
@@ -53,6 +59,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
         disableInnerContainer={true}
       />
     ),
+    cards: ({ node }) => <CardBlock className="col-start-1 col-span-3" {...node.fields} />,
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
     charts: ({ node }) => <ChartBlock className="col-start-1 col-span-3" {...node.fields} />,

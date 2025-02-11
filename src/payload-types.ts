@@ -147,7 +147,16 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | GithubBlock | ChartBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | GithubBlock
+    | ChartBlock
+    | CardBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -764,6 +773,81 @@ export interface ChartBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardBlock".
+ */
+export interface CardBlock {
+  cardType?: ('widecard' | 'gridcard') | null;
+  wideCards?:
+    | {
+        wideRichText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: string | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+                /**
+                 * Choose how the link should be rendered.
+                 */
+                appearance?: ('default' | 'outline' | 'link' | 'ghost' | 'secondary' | 'destructive') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        wideImage: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  gridCards?:
+    | {
+        gridRichText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1068,6 +1152,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         githubBlock?: T | GithubBlockSelect<T>;
         charts?: T | ChartBlockSelect<T>;
+        cards?: T | CardBlockSelect<T>;
       };
   meta?:
     | T
@@ -1205,6 +1290,43 @@ export interface ChartBlockSelect<T extends boolean = true> {
         label?: T;
         value?: T;
         fill?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardBlock_select".
+ */
+export interface CardBlockSelect<T extends boolean = true> {
+  cardType?: T;
+  wideCards?:
+    | T
+    | {
+        wideRichText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        wideImage?: T;
+        id?: T;
+      };
+  gridCards?:
+    | T
+    | {
+        gridRichText?: T;
         id?: T;
       };
   id?: T;
