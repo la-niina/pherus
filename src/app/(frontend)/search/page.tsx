@@ -24,7 +24,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
     select: {
       title: true,
       slug: true,
-      tags: true,
+      tag: true,
       meta: true,
     },
     // pagination: false reduces overhead if you don't need totalDocs
@@ -53,6 +53,11 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
                   like: query,
                 },
               },
+              {
+                tag: {
+                  like: query,
+                },
+              },
             ],
           },
         }
@@ -63,12 +68,8 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
     <div className="pt-24 pb-24">
       <PageClient />
       <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none text-center">
-          <h1 className="mb-8 lg:mb-16">Search</h1>
-
-          <div className="max-w-[50rem] mx-auto">
-            <Search />
-          </div>
+        <div className="max-w-none text-center">
+          <Search />
         </div>
       </div>
 

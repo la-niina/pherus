@@ -56,11 +56,8 @@ export const Card: React.FC<{
                 {tags?.map((tag, index) => {
                   if (typeof tag === 'object') {
                     const { title: titleFromTags } = tag
-
-                    const tagsTitle = titleFromTags || 'Untitled category'
-
+                    const tagsTitle = titleFromTags || ''
                     const isLast = index === tags.length - 1
-
                     return (
                       <Fragment key={index}>
                         {tagsTitle}

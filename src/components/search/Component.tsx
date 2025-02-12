@@ -4,6 +4,7 @@ import { Label } from '@/components/ui/label'
 import React, { useState, useEffect } from 'react'
 import { useDebounce } from '@/utilities/useDebounce'
 import { useRouter } from 'next/navigation'
+import { VanishInput } from '../ui/vanish-input'
 
 export const Search: React.FC = () => {
   const [value, setValue] = useState('')
@@ -16,26 +17,17 @@ export const Search: React.FC = () => {
   }, [debouncedValue, router])
 
   return (
-    <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
+    <div className="h-fit flex flex-col justify-center  items-center px-4">
+      <h2 className="mb-10 sm:mb-20 text-xl text-center sm:text-5xl dark:text-white text-black">
+        Search
+      </h2>
+      <VanishInput
+        placeholders={['search', 'pages', 'blogs']}
+        onChange={(event) => {
+          setValue(event.target.value)
         }}
-      >
-        <Label htmlFor="search" className="sr-only">
-          Search
-        </Label>
-        <Input
-          id="search"
-          onChange={(event) => {
-            setValue(event.target.value)
-          }}
-          placeholder="Search"
-        />
-        <button type="submit" className="sr-only">
-          submit
-        </button>
-      </form>
+        onSubmit={(e) => e.preventDefault()}
+      />
     </div>
   )
 }

@@ -22,6 +22,8 @@ import { hero } from '@/components/heros/config'
 import { Github } from '@/blocks/GithubBlock/config'
 import { Charts } from '@/blocks/ChartBlock/config'
 import { Cards } from '@/blocks/CardBlock/config'
+import { TimeLines } from '@/blocks/TimelineBlock/config'
+import { Testimonials } from '@/blocks/Testimonials/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -86,6 +88,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 Github,
                 Charts,
                 Cards,
+                TimeLines,
+                Testimonials,
               ],
               required: true,
               admin: {
@@ -110,7 +114,12 @@ export const Pages: CollectionConfig<'pages'> = {
             MetaImageField({
               relationTo: 'media',
             }),
-
+            {
+              name: 'keywords',
+              type: 'relationship',
+              hasMany: true,
+              relationTo: 'tags',
+            },
             MetaDescriptionField({}),
             PreviewField({
               // if the `generateUrl` function is configured

@@ -11,6 +11,15 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title ? doc?.meta?.title + '' : ''
+  const keywordsAsString =
+    doc?.meta?.keywords
+      ?.map((tag) => {
+        if (typeof tag === 'object') {
+          const { title } = tag
+          return title
+        }
+      })
+      .join(',') || ''
 
   return {
     description: doc?.meta?.description,
@@ -26,6 +35,7 @@ export const generateMeta = async (args: {
       title,
       url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
     }),
+    keywords: keywordsAsString,
     title,
   }
 }

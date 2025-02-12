@@ -210,6 +210,8 @@ export interface Page {
     | GithubBlock
     | ChartBlock
     | CardBlock
+    | TimelineBlock
+    | TestimonialBlock
   )[];
   meta?: {
     title?: string | null;
@@ -217,6 +219,7 @@ export interface Page {
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (string | null) | Media;
+    keywords?: (string | Tag)[] | null;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -257,6 +260,7 @@ export interface Post {
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (string | null) | Media;
+    keywords?: (string | Tag)[] | null;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -902,6 +906,70 @@ export interface CardBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock".
+ */
+export interface TimelineBlock {
+  changelogHeader?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  timeline?:
+    | {
+        title?: string | null;
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'timelineBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock".
+ */
+export interface TestimonialBlock {
+  autoPlay?: boolean | null;
+  testimonials?:
+    | {
+        quote?: string | null;
+        name?: string | null;
+        designation?: string | null;
+        src?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -974,10 +1042,11 @@ export interface Search {
   slug?: string | null;
   meta?: {
     title?: string | null;
+    keywords?: (string | Tag)[] | null;
     description?: string | null;
     image?: (string | null) | Media;
   };
-  tags?:
+  tag?:
     | {
         relationTo?: string | null;
         id?: string | null;
@@ -1207,12 +1276,15 @@ export interface PagesSelect<T extends boolean = true> {
         githubBlock?: T | GithubBlockSelect<T>;
         charts?: T | ChartBlockSelect<T>;
         cards?: T | CardBlockSelect<T>;
+        timelineBlock?: T | TimelineBlockSelect<T>;
+        testimonials?: T | TestimonialBlockSelect<T>;
       };
   meta?:
     | T
     | {
         title?: T;
         image?: T;
+        keywords?: T;
         description?: T;
       };
   publishedAt?: T;
@@ -1388,6 +1460,40 @@ export interface CardBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock_select".
+ */
+export interface TimelineBlockSelect<T extends boolean = true> {
+  changelogHeader?: T;
+  timeline?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock_select".
+ */
+export interface TestimonialBlockSelect<T extends boolean = true> {
+  autoPlay?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        name?: T;
+        designation?: T;
+        src?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1401,6 +1507,7 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         title?: T;
         image?: T;
+        keywords?: T;
         description?: T;
       };
   publishedAt?: T;
@@ -1765,10 +1872,11 @@ export interface SearchSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        keywords?: T;
         description?: T;
         image?: T;
       };
-  tags?:
+  tag?:
     | T
     | {
         relationTo?: T;

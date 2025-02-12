@@ -28,13 +28,14 @@ export const PostHero: React.FC<{
           <div className="flex flex-col md:flex-row gap-4 md:gap-16">
             {hasAuthors && (
               <div className={cn('flex flex-row items-center gap-3')}>
-                {populatedAuthors.map((items, index) => {
-                  const avatar = items.avatar
+                {populatedAuthors.map((items) => {
                   return (
-                    <Avatar key={index}>
-                      <AvatarImage src={avatar?.toString()} />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                    <Media
+                      key={items.id}
+                      className="size-[45px] rounded-full"
+                      imgClassName="object-cover size-[45px] rounded-full border"
+                      resource={items?.avatar!!}
+                    />
                   )
                 })}
 
@@ -53,14 +54,17 @@ export const PostHero: React.FC<{
           </div>
 
           <div className="flex flex-row gap-2 mt-5">
-            {tags?.map((items, index) => {
+            {tags?.map((items) => {
               if (typeof items === 'object' && items !== null) {
                 const { title } = items
                 const titleToUse = title || 'Untitled Tags'
-                const isLast = index === tags.length - 1
 
                 return (
-                  <Badge variant={'destructive'} className={cn('rounded-full p-2 cursor-pointer')}>
+                  <Badge
+                    key={items.id}
+                    variant={'destructive'}
+                    className={cn('rounded-full p-2 cursor-pointer')}
+                  >
                     {titleToUse}
                   </Badge>
                 )

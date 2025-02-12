@@ -10,6 +10,8 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { GithubBlock } from './GithubBlock/Component'
 import { ChartBlock } from './ChartBlock/Component'
 import { CardBlock } from './CardBlock/Component'
+import { TimelineBlock } from './TimelineBlock/Component'
+import { TestimonialBlock } from './Testimonials/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +22,8 @@ const blockComponents = {
   githubBlock: GithubBlock,
   charts: ChartBlock,
   cards: CardBlock,
+  timelineBlock: TimelineBlock,
+  testimonials: TestimonialBlock,
 }
 
 export const RenderBlocks: React.FC<{

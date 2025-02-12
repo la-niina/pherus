@@ -1,6 +1,6 @@
 import type { Block } from 'payload'
 
-export const SponserBlock: Block = {
+export const Sponsers: Block = {
   slug: 'sponserBlock',
   interfaceName: 'SponserBlock',
   fields: [],

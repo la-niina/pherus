@@ -1,15 +1,18 @@
 'use client'
 
+import { Media } from '@/payload-types'
+import { getClientSideURL } from '@/utilities/getURL'
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { useEffect, useState } from 'react'
+import { ImageMedia } from '../Media/ImageMedia'
 
 type Testimonial = {
-  quote: string
-  name: string
-  designation: string
-  src: string
+  quote?: string | null
+  name?: string | null
+  designation?: string | null
+  src?: (string | null) | Media
 }
 export const AnimatedTestimonials = ({
   testimonials,
@@ -42,51 +45,61 @@ export const AnimatedTestimonials = ({
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10
   }
+
   return (
     <div className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
       <div className="relative grid grid-cols-1 md:grid-cols-2  gap-20">
         <div>
           <div className="relative h-80 w-full">
             <AnimatePresence>
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.src}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: randomRotateY(),
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
-                    zIndex: isActive(index) ? 999 : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: randomRotateY(),
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: 'easeInOut',
-                  }}
-                  className="absolute inset-0 origin-bottom"
-                >
-                  <Image
-                    src={testimonial.src}
-                    alt={testimonial.name}
-                    width={500}
-                    height={500}
-                    draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
-                  />
-                </motion.div>
-              ))}
+              {testimonials.map((testimonial, index) => {
+                let src: StaticImageData | string = ''
+                if (src && !src && testimonial.src && typeof testimonial.src === 'object') {
+                  const { url } = testimonial.src
+
+                  const cacheTag = testimonial.src.updatedAt
+
+                  src = `${getClientSideURL()}${url}?${cacheTag}`
+                }
+
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: -100,
+                      rotate: randomRotateY(),
+                    }}
+                    animate={{
+                      opacity: isActive(index) ? 1 : 0.7,
+                      scale: isActive(index) ? 1 : 0.95,
+                      z: isActive(index) ? 0 : -100,
+                      rotate: isActive(index) ? 0 : randomRotateY(),
+                      zIndex: isActive(index) ? 999 : testimonials.length + 2 - index,
+                      y: isActive(index) ? [0, -80, 0] : 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: 100,
+                      rotate: randomRotateY(),
+                    }}
+                    transition={{
+                      duration: 0.4,
+                      ease: 'easeInOut',
+                    }}
+                    className="absolute inset-0 origin-bottom"
+                  >
+                    <ImageMedia
+                      resource={testimonial.src!!}
+                      alt={testimonial.name?.toString()}
+                      size={'500'}
+                      imgClassName="h-full w-full rounded-3xl object-cover object-center"
+                    />
+                  </motion.div>
+                )
+              })}
             </AnimatePresence>
           </div>
         </div>
@@ -117,7 +130,7 @@ export const AnimatedTestimonials = ({
               {testimonials[active]?.designation}
             </p>
             <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
-              {testimonials[active]?.quote.split(' ').map((word, index) => (
+              {testimonials[active]?.quote?.split(' ').map((word, index) => (
                 <motion.span
                   key={index}
                   initial={{

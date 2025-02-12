@@ -15,24 +15,26 @@ export const beforeSyncWithSearch: BeforeSync = async ({ originalDoc, searchDoc 
       title: meta?.title || title,
       image: meta?.image?.id || meta?.image,
       description: meta?.description,
+      keywords: meta?.keywords || [],
     },
-    tags: [],
+    tag: tags,
   }
 
   if (tags && Array.isArray(tags) && tags.length > 0) {
     // get full tags and keep a flattened copy of their most important properties
     try {
-      const mappedTags = tags.map((tags) => {
-        const { id, title } = tags
-
-        return {
-          relationTo: 'tags',
-          id,
-          title,
+      const mappedTags = tags.map((tag) => {
+        if (typeof tag === 'object') {
+          const { id, title } = tag
+          return {
+            relationTo: 'tags',
+            id,
+            title,
+          }
         }
       })
 
-      modifiedDoc.tags = mappedTags
+      modifiedDoc.tag = mappedTags
     } catch (_err) {
       console.error(
         `Failed. Category not found when syncing collection '${collection}' with id: '${id}' to search.`,

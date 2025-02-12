@@ -151,7 +151,12 @@ export const Posts: CollectionConfig<'posts'> = {
             MetaImageField({
               relationTo: 'media',
             }),
-
+            {
+              name: 'keywords',
+              type: 'relationship',
+              hasMany: true,
+              relationTo: 'tags',
+            },
             MetaDescriptionField({}),
             PreviewField({
               // if the `generateUrl` function is configured
