@@ -8,28 +8,34 @@ import RichText from '@/components/RichText'
 
 export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   return (
-    <div className="">
-      <div className="container mb-8">
-        {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
+    <div
+      className="relative -mt-[10.4rem] flex items-end justify-center text-white"
+      data-theme="dark"
+    >
+      <div className="container mb-8 z-10 relative flex items-start justify-start">
+        <div className="max-w-[36.5rem]">
+          {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
 
-        {Array.isArray(links) && links.length > 0 && (
-          <ul className="flex gap-4">
-            {links.map(({ link }, i) => {
-              return (
-                <li key={i}>
-                  <CMSLink {...link} />
-                </li>
-              )
-            })}
-          </ul>
-        )}
+          {Array.isArray(links) && links.length > 0 && (
+            <ul className="flex gap-4">
+              {links.map(({ link }, i) => {
+                return (
+                  <li key={i}>
+                    <CMSLink {...link} />
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </div>
       </div>
-      <div className="container ">
+      <div className="min-h-[50vh] select-none">
         {media && typeof media === 'object' && (
           <div>
             <Media
-              className="-mx-4 md:-mx-8 2xl:-mx-16"
-              imgClassName=""
+              fill
+              className="size-full"
+              imgClassName="-z-10 object-cover"
               priority
               resource={media}
             />
@@ -38,6 +44,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
                 <RichText data={media.caption} enableGutter={false} />
               </div>
             )}
+            <div className="absolute pointer-events-none left-0 bottom-0 w-full h-5/6 bg-gradient-to-t from-black to-transparent" />
           </div>
         )}
       </div>

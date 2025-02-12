@@ -18,7 +18,7 @@ export const CardBlock: React.FC<CardBlockProps> = (props) => {
           {gridCards?.map((items, index) => {
             const { gridRichText } = items
             return (
-              <Card key={index} className="w-full col-span-1 rounded-xl">
+              <Card key={index} className="w-full col-span-1 rounded-2xl bg-muted/35">
                 <CardContent className="p-5">
                   {gridRichText && <RichText data={gridRichText} enableGutter={false} />}
                 </CardContent>
@@ -32,7 +32,7 @@ export const CardBlock: React.FC<CardBlockProps> = (props) => {
           {wideCards?.map((items, index) => {
             const { wideRichText, wideImage, links } = items
             return (
-              <Card key={index} className="w-full rounded-xl h-fit">
+              <Card key={index} className="w-full h-fit rounded-2xl bg-muted/35">
                 <CardContent className="grid grid-cols-1 h-fit md:grid-cols-3 lg:grid-cols-3 gap-5 p-3 md:p-5">
                   <div
                     className={cn(
