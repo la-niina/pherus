@@ -28,11 +28,14 @@ import {
   IconBrandVimeo,
   IconBrandWhatsapp,
 } from '@tabler/icons-react'
+import { StaticImageData } from 'next/image'
+import { getClientSideURL } from '@/utilities/getURL'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer', 1)()
   const { logo, footer, social, copyright } = footerData
   const navItems = footer || []
+  let src: StaticImageData | string = ''
 
   const getIconByName = (label: string) => {
     if (label.includes('facebook')) return <LucideFacebook />
@@ -53,11 +56,16 @@ export async function Footer() {
     return null
   }
 
+  if (!src && logo && typeof logo === 'object') {
+    const { url } = logo
+    src = `${getClientSideURL()}${url}`
+  }
+
   return (
     <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
       <div className="container py-16 flex flex-col gap-5 md:gap-10">
         <Link className="flex items-center" href="/">
-          <Logo />
+          {logo ? <Logo src={src} /> : <Logo />}
         </Link>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto w-full">
           {navItems.map((item, index) => {
@@ -68,7 +76,7 @@ export async function Footer() {
                 <div className="flex flex-col gap-2">
                   {navItems?.map((navItem, i) => {
                     const { link } = navItem
-                    return <CMSLink className="text-sm font-light" key={i} {...link} />
+                    return <CMSLink className="text-xs font-light" key={i} {...link} />
                   })}
                 </div>
               </div>
