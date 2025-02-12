@@ -18,12 +18,16 @@ import {
   StrikethroughFeature,
   BlockquoteFeature,
   UnorderedListFeature,
+  HTMLConverterFeature,
+  defaultEditorFeatures,
+  RelationshipFeature,
 } from '@payloadcms/richtext-lexical'
 import { link } from './link'
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: ({ defaultFeatures }) => [
     ...defaultFeatures,
+    ...defaultEditorFeatures,
     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }),
     ParagraphFeature(),
     UnderlineFeature(),
@@ -39,6 +43,10 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
     StrikethroughFeature(),
     BlockquoteFeature(),
     UnorderedListFeature(),
+    HTMLConverterFeature({}),
+    RelationshipFeature({
+      enabledCollections: ['posts', 'pages', 'media'],
+    }),
     UploadFeature({
       collections: {
         media: {
