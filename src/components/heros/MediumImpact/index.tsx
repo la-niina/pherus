@@ -11,6 +11,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
     <div
       className="relative -mt-[10.4rem] flex items-end justify-center text-white"
       data-theme="dark"
+      suppressHydrationWarning
     >
       <div className="container mb-8 z-10 relative flex items-start justify-start">
         <div className="max-w-[36.5rem]">
