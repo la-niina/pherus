@@ -9,6 +9,7 @@ import type { Header } from '@/payload-types'
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
 import { useHeaderTheme } from '../providers/HeaderTheme'
+import { Card, CardContent } from '../ui/card'
 
 interface HeaderClientProps {
   data: Header
@@ -32,7 +33,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-border"
+      className="sticky top-0 z-50 border-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
       {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="container flex h-14 items-center w-full">
