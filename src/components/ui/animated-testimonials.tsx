@@ -4,7 +4,7 @@ import { Media } from '@/payload-types'
 import { getClientSideURL } from '@/utilities/getURL'
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image, { StaticImageData } from 'next/image'
+import { StaticImageData } from 'next/image'
 import { useEffect, useState } from 'react'
 import { ImageMedia } from '../Media/ImageMedia'
 

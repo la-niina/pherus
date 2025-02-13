@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -12,17 +13,19 @@ import { defaultLexical } from './utilities/fields/defaultLexical'
 import { Header } from './components/Header/config'
 import { Footer } from './components/Footer/config'
 import { plugins } from './utilities/plugins'
+import defaultMeta from './utilities/metaConfig'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  //serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  serverURL: process.env.NODE_ENV === 'production' ? getServerSideURL() : undefined,
   admin: {
     components: {
       beforeLogin: ['@/components/BeforeLogin'],
       beforeDashboard: ['@/components/BeforeDashboard'],
     },
+    meta: defaultMeta,
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -60,13 +63,15 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins: [...plugins],
   secret: process.env.PAYLOAD_SECRET,
-  sharp,
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
+  email: resendAdapter({
+    defaultFromAddress: process.env.RESEND_DEFAULT_EMAIL || '',
+    defaultFromName: process.env.RESEND_FROM_NAME || '',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   graphQL: {
     disablePlaygroundInProduction: true,
   },
+  sharp,
   jobs: {
     access: {
       run: ({ req }: { req: PayloadRequest }): boolean => {
@@ -76,5 +81,8 @@ export default buildConfig({
       },
     },
     tasks: [],
+  },
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
 })
