@@ -8,7 +8,7 @@ export const getServerSideURL = () => {
   }
 
   if (!url) {
-    url = 'http://localhost:3000'
+    url = process.env.NEXT_PUBLIC_SERVER_URL || ''
   }
 
   return url
