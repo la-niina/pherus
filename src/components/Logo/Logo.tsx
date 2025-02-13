@@ -24,11 +24,7 @@ export const Logo = (props: Props) => {
       fetchPriority={priority}
       decoding="async"
       className={clsx('max-w-[6.375rem] w-full h-[34px]', className)}
-      src={
-        src
-          ? src
-          : 'https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-light.svg'
-      }
+      src={src ? src : '/pherus_brand.svg'}
     />
   )
 }

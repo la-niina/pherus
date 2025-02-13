@@ -6,7 +6,7 @@ const defaultOpenGraph: Metadata['openGraph'] = {
   description: 'An open-source website built with Pherus and Next.js.',
   images: [
     {
-      url: `${getServerSideURL()}/website-template-OG.webp`,
+      url: `${getServerSideURL()}/pherus_brand.svg`,
     },
   ],
   siteName: 'Pherus Website Template',

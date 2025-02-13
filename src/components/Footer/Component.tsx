@@ -62,7 +62,7 @@ export async function Footer() {
   }
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
+    <footer className="mt-auto border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 text-white">
       <div className="container py-16 flex flex-col gap-5 md:gap-10">
         <Link className="flex items-center" href="/">
           {logo ? <Logo src={src} /> : <Logo />}

@@ -18,12 +18,19 @@ import defaultMeta from './utilities/metaConfig'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const Brand = './components/Logo/Brand.tsx'
+const Icon = './components/Logo/Icons.tsx'
+
 export default buildConfig({
   serverURL: process.env.NODE_ENV === 'production' ? getServerSideURL() : undefined,
   admin: {
     components: {
       beforeLogin: ['@/components/BeforeLogin'],
       beforeDashboard: ['@/components/BeforeDashboard'],
+      graphics: {
+        Icon: Icon,
+        Logo: Brand,
+      },
     },
     meta: defaultMeta,
     importMap: {
@@ -60,6 +67,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Tags, Users],
   cors: [getServerSideURL()].filter(Boolean),
+  csrf: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [...plugins],
   secret: process.env.PAYLOAD_SECRET,
@@ -69,7 +77,7 @@ export default buildConfig({
     apiKey: process.env.RESEND_API_KEY || '',
   }),
   graphQL: {
-    disablePlaygroundInProduction: true,
+    disablePlaygroundInProduction: false,
   },
   sharp,
   jobs: {

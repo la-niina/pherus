@@ -2,32 +2,20 @@ import { MetaConfig } from 'payload'
 
 const defaultMeta: MetaConfig = {
   defaultOGImageType: 'dynamic',
-  description: 'This is my custom CMS built with Payload.',
+  titleSuffix: ' - Pherus administrative dashboard',
+  description: 'Pherus administrative dashboard',
+  openGraph: {
+    description: 'Pherus administrative dashboard',
+  },
   icons: [
     {
+      url: `${process.env.PAYLOAD_PUBLIC_SERVER_URL || ''}/favicon.svg`,
+      fetchPriority: 'high',
+      type: 'image/svg',
       rel: 'icon',
-      type: 'image/png',
-      sizes: '32x32',
-      url: '/favicon.svg',
-    },
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '16x16',
-      url: '/favicon.svg',
-    },
-    {
-      rel: 'apple-touch-icon',
-      sizes: '180x180',
-      url: '/favicon.svg',
-    },
-    {
-      rel: 'manifest',
-      url: '/manifest.json',
+      sizes: 'any',
     },
   ],
-  title: 'Pherus - CMS',
-  titleSuffix: 'Pherus - ',
 }
 
 export default defaultMeta
