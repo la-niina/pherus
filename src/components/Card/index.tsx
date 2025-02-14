@@ -1,4 +1,5 @@
 'use client'
+
 import { cn } from '@/utilities/ui'
 import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
@@ -7,27 +8,27 @@ import React, { Fragment } from 'react'
 import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
+import { getServerSideURL } from '@/utilities/getURL'
 
-export type CardPostData = Pick<Post, 'slug' | 'tags' | 'meta' | 'title'>
+export type CardPostData = Pick<Post, 'id' | 'slug' | 'tags' | 'meta' | 'title'>
 
 export const Card: React.FC<{
   alignItems?: 'center'
   className?: string
   doc?: CardPostData
-  relationTo?: 'posts'
   showTags?: boolean
   title?: string
 }> = (props) => {
   const { card, link } = useClickableCard({})
-  const { className, doc, relationTo, showTags, title: titleFromProps } = props
+  const { className, doc, showTags, title: titleFromProps } = props
 
-  const { slug, tags, meta, title } = doc || {}
+  const { id, slug, tags, meta, title } = doc || {}
   const { description, image: metaImage } = meta || {}
 
   const hasTags = tags && Array.isArray(tags) && tags.length > 0
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/${relationTo}/${slug}`
+  const href = `${getServerSideURL()}/${id}/${slug}`
 
   return (
     <article

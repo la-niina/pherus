@@ -8,7 +8,7 @@ import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { getServerSideURL } from './utilities/getURL'
-import { Media, Pages, Posts, Tags, Users } from './features'
+import { Media, Pages, Posts, Tags, Users, Comments } from './features'
 import { defaultLexical } from './utilities/fields/defaultLexical'
 import { Header } from './components/Header/config'
 import { Footer } from './components/Footer/config'
@@ -65,7 +65,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Tags, Users],
+  collections: [Pages, Posts, Media, Tags, Users, Comments],
   cors: [getServerSideURL()].filter(Boolean),
   csrf: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],

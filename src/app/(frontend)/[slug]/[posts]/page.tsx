@@ -14,6 +14,8 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { PostHero } from '@/components/heros'
+import { CommentBlock } from '@/blocks/CommentBlock/Component'
+import { getMeUser } from '@/utilities/getMeUser'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -38,14 +40,16 @@ export async function generateStaticParams() {
 type Args = {
   params: Promise<{
     slug?: string
+    posts?: string
   }>
 }
 
 export default async function Post({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = '' } = await paramsPromise
-  const url = '/posts/' + slug
-  const post = await queryPostBySlug({ slug })
+  const { slug = '', posts = '' } = await paramsPromise
+  const url = slug + posts
+  const post = await queryPostBySlug({ posts })
+  const me = await getMeUser()
 
   if (!post) return <PayloadRedirects url={url} />
 
@@ -63,6 +67,13 @@ export default async function Post({ params: paramsPromise }: Args) {
       <div className="flex flex-col items-center gap-4 pt-8">
         <div className="container">
           <RichText className="max-w-[48rem] mx-auto" data={post.content} enableGutter={false} />
+          {me?.user && (
+            <CommentBlock
+              className="flex flex-col gap-5 max-w-[48rem] mx-auto mt-5"
+              post={post}
+              user={me.user}
+            />
+          )}
           {post.relatedPosts && post.relatedPosts.length > 0 && (
             <RelatedPosts
               className="mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]"
@@ -76,13 +87,13 @@ export default async function Post({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
-  const { slug = '' } = await paramsPromise
-  const post = await queryPostBySlug({ slug })
+  const { posts = '' } = await paramsPromise
+  const post = await queryPostBySlug({ posts })
 
   return generateMeta({ doc: post, type: 'article' })
 }
 
-const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryPostBySlug = cache(async ({ posts }: { posts: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
@@ -95,7 +106,7 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
     pagination: false,
     where: {
       slug: {
-        equals: slug,
+        equals: posts,
       },
     },
   })

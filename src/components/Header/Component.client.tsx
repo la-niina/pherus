@@ -40,7 +40,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         <div className="mr-4 flex">
           <div className="mr-4 flex items-center gap-2 lg:mr-6">
             <Link href="/">
-              <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+              <Logo loading="eager" priority="high" className="" />
             </Link>
           </div>
         </div>

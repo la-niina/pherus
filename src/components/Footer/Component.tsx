@@ -62,7 +62,7 @@ export async function Footer() {
   }
 
   return (
-    <footer className="mt-auto border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 text-white">
+    <footer className="mt-auto border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container py-16 flex flex-col gap-5 md:gap-10">
         <Link className="flex items-center" href="/">
           {logo ? <Logo src={src} /> : <Logo />}
@@ -72,11 +72,11 @@ export async function Footer() {
             const { header, navItems } = item
             return (
               <div key={index} className={cn('flex flex-col gap-3 col-span-1')}>
-                <h1 className="text-lg font-normal font-serif">{header}</h1>
+                <h1 className="text-lg font-bold font-serif">{header}</h1>
                 <div className="flex flex-col gap-2">
                   {navItems?.map((navItem, i) => {
                     const { link } = navItem
-                    return <CMSLink className="text-xs font-light" key={i} {...link} />
+                    return <CMSLink className="font-light" key={i} {...link} />
                   })}
                 </div>
               </div>
