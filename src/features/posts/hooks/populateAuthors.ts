@@ -1,4 +1,3 @@
-import { getImageURL } from '@/utilities/getImageURL'
 import type { CollectionAfterReadHook } from 'payload'
 import { User } from 'src/payload-types'
 
