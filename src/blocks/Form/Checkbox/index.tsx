@@ -9,6 +9,7 @@ import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
+import { cn } from '@/utilities/ui'
 
 export const Checkbox: React.FC<
   CheckboxField & {
@@ -20,7 +21,7 @@ export const Checkbox: React.FC<
   const { setValue } = useFormContext()
 
   return (
-    <Width width={width}>
+    <Width width={width} className={cn('flex flex-col gap-2')}>
       <div className="flex items-center gap-2">
         <CheckboxUi
           defaultChecked={defaultValue}

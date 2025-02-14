@@ -92,7 +92,7 @@ export const plugins: Plugin[] = [
     },
   }),
   payloadCloudPlugin(),
-  /** s3Storage({
+  s3Storage({
     collections: {
       media: {
         prefix: 'media',
@@ -110,5 +110,5 @@ export const plugins: Plugin[] = [
     disableLocalStorage: true,
     enabled: true,
     acl: 'private',
-  }),**/
+  }),
 ]

@@ -7,6 +7,7 @@ import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
+import { cn } from '@/utilities/ui'
 
 export const Email: React.FC<
   EmailField & {
@@ -15,20 +16,21 @@ export const Email: React.FC<
   }
 > = ({ name, defaultValue, errors, label, register, required, width }) => {
   return (
-    <Width width={width}>
+    <Width width={width} className={cn('flex flex-col gap-2')}>
       <Label htmlFor={name}>
         {label}
 
         {required && (
-          <span className="required">
+          <span className="required text-red-400">
             * <span className="sr-only">(required)</span>
           </span>
         )}
       </Label>
       <Input
-        defaultValue={defaultValue}
+        placeholder={defaultValue}
         id={name}
         type="text"
+        className={cn('rounded-none border-l-yellow-500 border-l-[5px]')}
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
       />
 

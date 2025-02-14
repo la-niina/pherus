@@ -7,6 +7,7 @@ import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
+import { cn } from '@/utilities/ui'
 
 export const Text: React.FC<
   TextField & {
@@ -15,7 +16,7 @@ export const Text: React.FC<
   }
 > = ({ name, defaultValue, errors, label, register, required, width }) => {
   return (
-    <Width width={width}>
+    <Width width={width} className={cn('flex flex-col gap-2')}>
       <Label htmlFor={name}>
         {label}
 
@@ -25,7 +26,13 @@ export const Text: React.FC<
           </span>
         )}
       </Label>
-      <Input defaultValue={defaultValue} id={name} type="text" {...register(name, { required })} />
+      <Input
+        placeholder={defaultValue}
+        id={name}
+        type="text"
+        className={cn('rounded-none border-l-yellow-500 border-l-[5px]')}
+        {...register(name, { required })}
+      />
       {errors[name] && <Error />}
     </Width>
   )

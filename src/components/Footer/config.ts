@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload'
 
 import { revalidateFooter } from './hooks/revalidateFooter'
 import { link } from '@/utilities/fields/link'
+import { linkGroup } from '@/utilities/fields/linkGroup'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -55,6 +56,11 @@ export const Footer: GlobalConfig = {
       fields: [
         {
           name: 'label',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'links',
           type: 'text',
           required: true,
         },

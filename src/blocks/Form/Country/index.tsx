@@ -15,6 +15,7 @@ import { Controller } from 'react-hook-form'
 import { Error } from '../Error'
 import { Width } from '../Width'
 import { countryOptions } from './options'
+import { cn } from '@/utilities/ui'
 
 export const Country: React.FC<
   CountryField & {
@@ -23,7 +24,7 @@ export const Country: React.FC<
   }
 > = ({ name, control, errors, label, required, width }) => {
   return (
-    <Width width={width}>
+    <Width width={width} className={cn('flex flex-col gap-2')}>
       <Label className="" htmlFor={name}>
         {label}
 
@@ -42,8 +43,11 @@ export const Country: React.FC<
 
           return (
             <Select onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
-              <SelectTrigger className="w-full" id={name}>
-                <SelectValue placeholder={label} />
+              <SelectTrigger
+                className={cn('rounded-none border-l-yellow-500 border-l-[5px] w-full')}
+                id={name}
+              >
+                <SelectValue className="text-sm font-light" placeholder={label} />
               </SelectTrigger>
               <SelectContent>
                 {countryOptions.map(({ label, value }) => {

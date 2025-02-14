@@ -7,6 +7,7 @@ import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
+import { cn } from '@/utilities/ui'
 
 export const Textarea: React.FC<
   TextField & {
@@ -16,7 +17,7 @@ export const Textarea: React.FC<
   }
 > = ({ name, defaultValue, errors, label, register, required, rows = 3, width }) => {
   return (
-    <Width width={width}>
+    <Width width={width} className={cn('flex flex-col gap-2')}>
       <Label htmlFor={name}>
         {label}
 
@@ -28,9 +29,10 @@ export const Textarea: React.FC<
       </Label>
 
       <TextAreaComponent
-        defaultValue={defaultValue}
+        placeholder={defaultValue}
         id={name}
         rows={rows}
+        className={cn('rounded-none border-l-yellow-500 border-l-[5px]')}
         {...register(name, { required: required })}
       />
 

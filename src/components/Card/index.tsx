@@ -9,6 +9,9 @@ import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 import { getServerSideURL } from '@/utilities/getURL'
+import { Badge } from '../ui/badge'
+import { Label } from '../ui/label'
+import { buttonVariants } from '../ui/button'
 
 export type CardPostData = Pick<Post, 'id' | 'slug' | 'tags' | 'meta' | 'title'>
 
@@ -53,17 +56,29 @@ export const Card: React.FC<{
         {showTags && hasTags && (
           <div className="text-xs mb-2">
             {showTags && hasTags && (
-              <div>
+              <div className="flex flex-row gap-1 overflow-hidden overflow-x-scroll">
                 {tags?.map((tag, index) => {
                   if (typeof tag === 'object') {
                     const { title: titleFromTags } = tag
                     const tagsTitle = titleFromTags || ''
                     const isLast = index === tags.length - 1
                     return (
-                      <Fragment key={index}>
+                      <Label
+                        key={index}
+                        className={cn(
+                          buttonVariants({
+                            variant: 'default',
+                            size: 'sm',
+                          }),
+                          'rounded-full h-5 text-xs text-yellow-200 bg-accent/60 hover:bg-accent/90',
+                        )}
+                      >
+                        {tagsTitle.trim()}
+                      </Label>
+                      /**<Fragment key={index}>
                         {tagsTitle}
                         {!isLast && <Fragment>, &nbsp;</Fragment>}
-                      </Fragment>
+                      </Fragment> **/
                     )
                   }
 
