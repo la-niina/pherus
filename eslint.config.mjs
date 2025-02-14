@@ -1,27 +1,22 @@
-import path from 'path'
+import { dirname } from 'path'
 import { fileURLToPath } from 'url'
-import eslint from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import nextPlugin from '@next/eslint-plugin-next'
+import { FlatCompat } from '@eslint/eslintrc'
 
 const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __dirname = dirname(__filename)
 
-export default tseslint.config(
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+})
+
+const eslintConfig = [
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
-    files: ['**/*.ts', '**/*.tsx'],
-    extends: [
-      eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      nextPlugin.configs.recommended,
-    ],
     plugins: {
       '@next/next': nextPlugin,
       '@typescript-eslint': tseslint.plugin,
     },
     rules: {
-      'no-console': 'off',
-      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/ban-ts-comment': [
         'warn',
         {
@@ -29,6 +24,8 @@ export default tseslint.config(
           'ts-nocheck': 'allow-with-description',
         },
       ],
+      '@typescript-eslint/no-empty-object-type': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
@@ -42,20 +39,10 @@ export default tseslint.config(
         },
       ],
     },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
-        sourceType: 'module',
-        ecmaVersion: 'latest',
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-    },
   },
   {
-    ignores: ['.next/', 'node_modules/', 'dist/', 'build/'],
+    ignores: ['.next/'],
   },
-)
+]
+
+export default eslintConfig

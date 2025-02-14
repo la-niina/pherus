@@ -1,13 +1,11 @@
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SERVER_URL ||
-  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-  'https://pherus.org'
+  process.env.NEXT_PUBLIC_SERVER_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || ''
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: SITE_URL,
   generateRobotsTxt: true,
-  exclude: ['/posts-sitemap.xml', '/pages-sitemap.xml', '/*'],
+  exclude: ['/posts-sitemap.xml', '/pages-sitemap.xml', '/[slug]/[posts]/*'],
   robotsTxtOptions: {
     policies: [
       {
