@@ -84,6 +84,8 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Pherus search template`,
+    title: '🔍 Pherus Search – Explore Knowledge with Precision',
+    description:
+      'Easily access valuable insights by searching through our extensive collection of documents, research papers, and reports. Pherus Search is designed to help you quickly find the information you need—efficiently and accurately. 🚀',
   }
 }
