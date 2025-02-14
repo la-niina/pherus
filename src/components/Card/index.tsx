@@ -31,7 +31,7 @@ export const Card: React.FC<{
   const hasTags = tags && Array.isArray(tags) && tags.length > 0
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `${getServerSideURL()}/${id}/${slug}`
+  const href = `/${id}/${slug}`
 
   return (
     <article
@@ -70,15 +70,11 @@ export const Card: React.FC<{
                             variant: 'default',
                             size: 'sm',
                           }),
-                          'rounded-full h-5 text-xs text-yellow-200 bg-accent/60 hover:bg-accent/90',
+                          'rounded-full h-5 text-xs text-yellow-200 bg-muted/60 hover:bg-muted/90',
                         )}
                       >
                         {tagsTitle.trim()}
                       </Label>
-                      /**<Fragment key={index}>
-                        {tagsTitle}
-                        {!isLast && <Fragment>, &nbsp;</Fragment>}
-                      </Fragment> **/
                     )
                   }
 
