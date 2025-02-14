@@ -56,16 +56,18 @@ export async function Footer() {
     return null
   }
 
-  if (!src && logo && typeof logo === 'object') {
+  if (!src && logo && typeof logo === 'object' && 'url' in logo) {
     const { url } = logo
-    src = `${getClientSideURL()}${url}`
+    src = `${url}`
   }
 
   return (
     <footer className="mt-auto border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container py-16 flex flex-col gap-5 md:gap-10">
         <Link className="flex items-center w-fit" href="/">
-          {logo ? <Logo src={src} /> : <Logo />}
+          {/** WILL COMFIRM THE {logo url} WHEN I GET TIME, FOR NOW GET A LIFE **/}
+          {/**logo ? <Logo src={src} /> : <Logo /> **/}
+          <Logo loading="eager" priority="high" className="" />
         </Link>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto w-full">
           {navItems.map((item, index) => {
