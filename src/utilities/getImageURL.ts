@@ -5,7 +5,7 @@ export const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null
   const serverUrl = getServerSideURL()
   let url = serverUrl + '/avatar.jpeg'
   if (image && typeof image === 'object' && 'url' in image) {
-    const ogUrl = image.sizes?.og?.url
+    const ogUrl = image?.url
 
     url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url
   }
