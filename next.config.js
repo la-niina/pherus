@@ -36,7 +36,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  productionSourceMaps: false,
   reactStrictMode: true,
   redirects,
 }
