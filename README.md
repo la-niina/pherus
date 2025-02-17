@@ -69,13 +69,13 @@ Our website is built using:
 
 We welcome collaborations with researchers, engineers, developers, and visionaries who align with our mission. If you have an idea or proposal, reach out to us via:
 
-📧 **Email:** [contact@pherus.org](mailto:contact@pherus.org)
+📧 **Email:** [pherus@pherus.org](mailto:pherus@pherus.org)
 🌐 **Website:** [https://pherus.org](https://pherus.org)
 
 ---
 
 ## 📜 **License**
 
-This project is licensed under the **MIT License**—feel free to use, modify, and distribute as needed.
+This project is licensed under the [**Pherus Website License**](https://pherus.org/67b0ac19300e2207589a3dcf/pherus-website-license) please read the license before acting upon the code or using it
 
 **Pherus: Where innovation meets limitless possibilities.** 🚀
