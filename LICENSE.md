@@ -1,4 +1,5 @@
 Pherus Website License
+
 1. License Grant
 Pherus grants users a limited, non-exclusive, non-transferable license to access and use the website https://pherus.org for personal and informational purposes. Users may reference ideas and concepts but may not copy, redistribute, or reproduce content without explicit permission.
 

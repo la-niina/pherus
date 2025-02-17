@@ -9,7 +9,15 @@ import { anyone, authenticated } from '../access'
 
 export const Media: CollectionConfig = {
   slug: 'media',
-  admin: {},
+  admin: {
+    components: {
+      views: {
+        list: {
+          Component: '@/features/media/component/MediaList#MediaList',
+        },
+      },
+    },
+  },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -42,7 +50,6 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    staticDir: 'media',
     adminThumbnail: 'thumbnail',
     focalPoint: true,
     disableLocalStorage: true,

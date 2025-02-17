@@ -8,6 +8,19 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self';",
+          },
+        ],
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       ...[NEXT_PUBLIC_SERVER_URL].map((item) => {
@@ -23,6 +36,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  productionSourceMaps: false,
   reactStrictMode: true,
   redirects,
 }

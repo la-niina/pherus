@@ -19,6 +19,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@payloadcms/translations": "latest",
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/email-resend": "latest",
     "@payloadcms/live-preview-react": "latest",
@@ -62,6 +63,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "esbuild": ">=0.25.0",
     "@eslint/eslintrc": "^3.2.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/escape-html": "^1.0.4",
