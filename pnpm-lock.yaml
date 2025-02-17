@@ -44,6 +44,9 @@ importers:
       '@payloadcms/storage-s3':
         specifier: latest
         version: 3.23.0(payload@3.23.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))
+      '@payloadcms/translations':
+        specifier: latest
+        version: 3.23.0
       '@payloadcms/ui':
         specifier: latest
         version: 3.23.0(@types/react@19.0.7)(monaco-editor@0.52.2)(next@15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.23.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)

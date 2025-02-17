@@ -19,6 +19,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@payloadcms/translations": "latest",
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/email-resend": "latest",
     "@payloadcms/live-preview-react": "latest",
