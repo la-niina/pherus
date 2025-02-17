@@ -63,7 +63,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "esbuild": ">=0.25.0",
     "@eslint/eslintrc": "^3.2.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/escape-html": "^1.0.4",
@@ -86,7 +85,6 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild",
       "sharp"
     ]
   }
