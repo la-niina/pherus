@@ -24,8 +24,9 @@ import {
   SelectMany,
   PerPage,
   Pagination,
+  RelationshipProvider,
 } from '@payloadcms/ui'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { formatFilesize } from 'payload/shared'
 import Image from 'next/image'
 import { Edit, Eye, Folder, Lock } from 'lucide-react'
@@ -36,20 +37,12 @@ import { formatDateTime } from '@/utilities/formatDateTime'
 
 const baseClass = 'collection-list'
 
-/**
- * Whats ever the fuck i just made up here so take it at face value, any why do I care
- */
 interface FolderStructure {
   path: string
   items: number
   files: Array<any>
 }
 
-/**
- * after a turn of attempts trying to figure out a structure using filter and map and flatmap blablabla
- * i just throw the unrefined code into chatgpt which amounted to 9 hours of bioling angry and hate fuck gpt
- * so deep seek did the trick in 6 atempts with a turn of explanations and reexplanations
- */
 const processFileStructure = (docs: any[]): { folders: FolderStructure[]; files: any[] } => {
   const folderMap = new Map<string, FolderStructure>()
   const rootFiles: any[] = []
@@ -121,10 +114,9 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
   const { user } = useAuth()
   const { getEntityConfig } = useConfig()
   const router = useRouter()
+  const usePathName = usePathname() // since I couldnt understand how the table selection and delection worked nor the relationship part I just
+  // made up some more shit
   const [currentPath, setCurrentPath] = React.useState<string>('')
-  // since i couldnt understand the render thing in the payload ui code i just decide to use
-  // usestate and ref from now the routing displayed in the browser, it solved the issue
-
   const {
     data,
     defaultLimit: initialLimit,
@@ -148,10 +140,6 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
   const {
     breakpoints: { s: smallBreak },
   } = useWindowInfo()
-
-  // Navigate to edit like we're time travelers with a very specific destination
-  // now for this part, hear me out I planned to get the collections exact name but
-  // Its 4:41 am in the fucking morning so if I forgot to do this use your brain for a change
   const handleNavigateToEdit = (id: string) => {
     router.push(`/admin/collections/${collectionSlug}/${id}`)
   }
@@ -169,22 +157,17 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
     }
   }, [data.docs, isUploadCollection])
 
-  // Process our files like a bureaucrat on coffee or my favourate a beer and a cup of bread
   const { folders, files } = React.useMemo(() => processFileStructure(data.docs), [data.docs])
 
-  // Filter files like we're sorting socks, but with actual success
   const currentFiles = React.useMemo(() => {
     if (!currentPath) {
-      // If we're at root, show files with no prefix or empty prefix
       return docs.filter(
         (doc) => !doc.prefix || doc.prefix.trim() === '' || doc.prefix.trim() === '.',
       )
     }
-    // Otherwise show files with matching prefix
     return docs.filter((doc) => doc.prefix === currentPath)
   }, [docs, currentPath])
 
-  // Filter folders based on current path, this one make a lot of since
   const currentFolders = React.useMemo(
     () =>
       folders.filter((folder) => {
@@ -295,9 +278,8 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                   ))}
                 </div>
               )}
-              {docs.length > 0 && (
+              {usePathName.includes(collectionSlug) && docs.length > 0 && (
                 <div className={'flex flex-col gap-3'}>
-                  {/* Folders go here for whatever reason the payload gods decide no complains here */}
                   {currentFolders.length > 0 && (
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                       {currentFolders.map((folder) => (
@@ -320,12 +302,10 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                     </div>
                   )}
 
-                  {/* Files  */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     {currentFiles.map((doc) => (
                       <Card key={doc.id} className="overflow-hidden group">
                         <CardContent className="p-0 relative">
-                          {/* Add error boundary for image loading */}
                           <div className="aspect-square relative overflow-hidden">
                             <Image
                               src={doc.thumbnailURL || doc.url}
@@ -335,7 +315,6 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                               priority={false}
                               onError={(e) => {
-                                // Fallback to a placeholder if image fails to load
                                 const imgElement = e.target as HTMLImageElement
                                 imgElement.src = '/placeholder-image.jpeg' // Add your placeholder image
                                 imgElement.alt = 'Placeholder Image'
@@ -343,13 +322,11 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                             />
                           </div>
 
-                          {/* Hover actions */}
                           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                            {/** originally wanted to add a dialog, but I got exhausted */}
                             <Button
                               variant="secondary"
                               size="icon"
-                              className="border-none rounded-full size-16"
+                              className="border-none rounded-full size-10"
                               onClick={(e) => {
                                 e.stopPropagation()
                                 window.open(doc.url, '_blank')
@@ -360,7 +337,7 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                             <Button
                               variant="secondary"
                               size="icon"
-                              className="border-none rounded-full size-16"
+                              className="border-none rounded-full size-10"
                               onClick={(e) => {
                                 e.stopPropagation()
                                 handleNavigateToEdit(doc.id)
@@ -370,7 +347,6 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                             </Button>
                           </div>
 
-                          {/* File info */}
                           <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-3 text-white">
                             <p className="text-sm font-medium truncate">{doc.filename}</p>
                             <div className="flex flex-row items-center justify-between">
@@ -382,7 +358,6 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                           </div>
 
                           {doc._isLocked && (
-                            // this lock part i don't understand its point in media cases but here it is
                             <Lock className="absolute top-2 left-2 h-4 w-4 text-white" />
                           )}
                         </CardContent>
@@ -392,7 +367,10 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                 </div>
               )}
               {BeforeListTable}
-              {docs.length === 0 && (
+              {!usePathName.includes(collectionSlug) && docs?.length > 0 && (
+                <RelationshipProvider>{Table}</RelationshipProvider>
+              )}
+              {usePathName.includes(collectionSlug) && docs.length === 0 && (
                 <div
                   className={`${baseClass}__no-results flex flex-col items-center justify-center h-full max-h-screen`}
                 >
@@ -434,7 +412,6 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
               {AfterListTable}
               {docs.length > 0 && (
                 <div className={`${baseClass}__page-controls`}>
-                  {/* Pagination - Because infinite scroll is so Web 2.0 */}
                   {data.totalPages > 1 && (
                     <div className="flex justify-between w-full items-center mt-4">
                       <Pagination
