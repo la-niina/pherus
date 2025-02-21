@@ -15,7 +15,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
-import { authenticated, authenticatedOrPublished } from '../access'
+import { administrator, anyone, authenticated, authenticatedOrPublished } from '../access'
 
 import {
   MetaDescriptionField,
@@ -31,9 +31,10 @@ import { Cards } from '@/blocks/CardBlock/config'
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   access: {
+    admin: administrator,
     create: authenticated,
     delete: authenticated,
-    read: authenticatedOrPublished,
+    read: anyone,
     update: authenticated,
   },
   // This config controls what's populated by default when a post is referenced
