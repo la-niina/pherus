@@ -12,7 +12,7 @@ export const Users: CollectionConfig = {
   },
   admin: {
     //defaultColumns: ['name', 'email'],
-    //useAsTitle: 'name',
+    useAsTitle: 'username',
   },
   auth: {
     loginWithUsername: {

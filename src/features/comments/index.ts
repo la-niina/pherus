@@ -1,12 +1,12 @@
 import { CollectionConfig } from 'payload'
-import { authenticated, authenticatedOrPublished } from '../access'
+import { anyone, authenticated, authenticatedOrPublished } from '../access'
 
 export const Comments: CollectionConfig = {
   slug: 'comments',
   access: {
     create: authenticated,
     delete: authenticated,
-    read: authenticatedOrPublished,
+    read: anyone,
     update: authenticated,
   },
   fields: [

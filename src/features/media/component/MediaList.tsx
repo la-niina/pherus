@@ -227,7 +227,7 @@ export const MediaList: React.FC<ListViewClientProps> = (props) => {
                     <RenderCustomComponent
                       CustomComponent={Description}
                       Fallback={
-                        <ViewDescription description={collectionConfig?.admin?.description} />
+                        <ViewDescription description={collectionConfig?.admin?.description!} />
                       }
                     />
                   </div>

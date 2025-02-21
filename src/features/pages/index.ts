@@ -7,7 +7,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
-import { authenticated, authenticatedOrPublished } from '../access'
+import { administrator, anyone, authenticated, authenticatedOrPublished } from '../access'
 
 import {
   MetaDescriptionField,
@@ -28,9 +28,10 @@ import { Testimonials } from '@/blocks/Testimonials/config'
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
+    admin: administrator,
     create: authenticated,
     delete: authenticated,
-    read: authenticatedOrPublished,
+    read: anyone,
     update: authenticated,
   },
   // This config controls what's populated by default when a page is referenced
