@@ -13,7 +13,7 @@ export const Media: CollectionConfig = {
     components: {
       views: {
         list: {
-          Component: '@/features/media/component/MediaList#MediaList',
+          Component: '@/collections/media/component/MediaList#MediaList',
         },
       },
     },
