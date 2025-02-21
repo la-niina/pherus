@@ -1,4 +1,4 @@
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
 

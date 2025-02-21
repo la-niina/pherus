@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 import { fields } from './fields'
-import { getClientSideURL } from '@/utilities/getURL'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
+import { getClientSideURL } from '@/environments/getURL'
 
 export type FormBlockType = {
   blockName?: string

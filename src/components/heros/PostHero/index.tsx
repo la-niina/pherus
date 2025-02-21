@@ -1,13 +1,12 @@
-import { formatDateTime } from 'src/utilities/formatDateTime'
 import React from 'react'
 
 import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
-import { formatAuthors } from '@/utilities/formatAuthors'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { cn } from '@/utilities/ui'
 import { Badge } from '@/components/ui/badge'
+import { formatAuthors } from '@/environments/formatAuthors'
+import { cn } from '@/environments/ui'
+import { formatDateTime } from '@/environments/formatDateTime'
 
 export const PostHero: React.FC<{
   post: Post

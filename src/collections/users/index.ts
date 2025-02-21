@@ -11,7 +11,6 @@ export const Users: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    //defaultColumns: ['name', 'email'],
     useAsTitle: 'username',
   },
   auth: {

@@ -2,7 +2,7 @@
 
 import React, { createContext, useCallback, useContext, useState } from 'react'
 
-import canUseDOM from '@/utilities/canUseDOM'
+import canUseDOM from '@/environments/canUseDOM'
 import type { Theme } from '../Theme/types'
 
 export interface ContextType {

@@ -1,7 +1,7 @@
 'use client'
 
 import { Media } from '@/payload-types'
-import { getClientSideURL } from '@/utilities/getURL'
+import { getClientSideURL } from '@/environments/getURL'
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { StaticImageData } from 'next/image'

@@ -15,7 +15,7 @@ import { Controller } from 'react-hook-form'
 import { Error } from '../Error'
 import { Width } from '../Width'
 import { countryOptions } from './options'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 
 export const Country: React.FC<
   CountryField & {

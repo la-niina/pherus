@@ -7,7 +7,7 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart'
 import type { ChartBlock as ChartBlockProps } from '@/payload-types'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 import React from 'react'
 import {
   Bar,

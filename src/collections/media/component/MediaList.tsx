@@ -33,7 +33,7 @@ import { Edit, Eye, Folder, Lock } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { formatDateTime } from '@/utilities/formatDateTime'
+import { formatDateTime } from '@/environments/formatDateTime'
 
 const baseClass = 'collection-list'
 

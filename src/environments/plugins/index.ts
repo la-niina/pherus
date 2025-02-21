@@ -10,10 +10,10 @@ import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
 import { Page, Post } from '@/payload-types'
-import { getServerSideURL } from '@/utilities/getURL'
 import { revalidateRedirects } from '../hooks/revalidateRedirects'
 import { beforeSyncWithSearch } from '@/components/search/beforeSync'
 import { searchFields } from '@/components/search/fieldOverrides'
+import { getServerSideURL } from '@/environments/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title ? doc.title : ''

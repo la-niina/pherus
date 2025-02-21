@@ -1,4 +1,4 @@
-import { linkGroup } from '@/utilities/fields/linkGroup'
+import { linkGroup } from '@/environments/fields/linkGroup'
 import {
   FixedToolbarFeature,
   HeadingFeature,

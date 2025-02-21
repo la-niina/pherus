@@ -1,4 +1,3 @@
-import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import React from 'react'
 
@@ -7,7 +6,6 @@ import type { Footer } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import { ThemeSelector } from '../providers/Theme/ThemeSelector'
-import { cn } from '@/utilities/ui'
 import { Button } from '../ui/button'
 import {
   LucideFacebook,
@@ -29,7 +27,8 @@ import {
   IconBrandWhatsapp,
 } from '@tabler/icons-react'
 import { StaticImageData } from 'next/image'
-import { getClientSideURL } from '@/utilities/getURL'
+import { cn } from '@/environments/ui'
+import { getCachedGlobal } from '@/environments/getGlobals'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer', 1)()

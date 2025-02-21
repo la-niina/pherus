@@ -36,5 +36,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
     }
-  }
+  },
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "editor.foldingImportsByDefault": true
 }

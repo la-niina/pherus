@@ -8,7 +8,7 @@ import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { generateMeta } from '@/utilities/generateMeta'
+import { generateMeta } from '@/environments/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { RenderHero } from '@/components/heros/RenderHero'
