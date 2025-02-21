@@ -21,9 +21,9 @@ export const ArchiveBlock: React.FC<
   if (populateBy === 'collection') {
     const payload = await getPayload({ config: configPromise })
 
-    const flattenedTags = tags?.map((tags) => {
-      if (typeof tags === 'object') return tags.id
-      else return tags
+    const flattenedTags = tags?.map((tag) => {
+      if (typeof tag === 'object') return tag.id
+      else return tag
     })
 
     const fetchedPosts = await payload.find({
