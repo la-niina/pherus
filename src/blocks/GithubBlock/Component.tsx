@@ -1,7 +1,7 @@
 import { ImageMedia } from '@/components/Media/ImageMedia'
 import { Button, buttonVariants } from '@/components/ui/button'
 import type { GithubBlock as GithubBlockProps } from '@/payload-types'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 import { GithubIcon } from 'lucide-react'
 import Link from 'next/link'
 

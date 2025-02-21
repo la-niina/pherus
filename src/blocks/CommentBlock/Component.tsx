@@ -2,12 +2,11 @@
 
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import type { Comment, Post, User } from '@/payload-types'
-import { formatDateTime } from '@/utilities/formatDateTime'
-import { cn } from '@/utilities/ui'
-import { getServerSideURL } from '@/utilities/getURL'
+import { formatDateTime } from '@/environments/formatDateTime'
+import { getServerSideURL } from '@/environments/getURL'
+import { cn } from '@/environments/ui'
+import type { Post, User } from '@/payload-types'
 import { useEffect, useState } from 'react'
-import { ImageMedia } from '@/components/Media/ImageMedia'
 
 type Props = {
   className?: string

@@ -12,7 +12,6 @@ import {
 import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
-import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
 import { administrator, anyone, authenticated, authenticatedOrPublished } from '../access'
@@ -24,9 +23,10 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { slugField } from '@/utilities/fields/slug'
 import { Charts } from '@/blocks/ChartBlock/config'
 import { Cards } from '@/blocks/CardBlock/config'
+import { generatePreviewPath } from '@/environments/generatePreviewPath'
+import { slugField } from '@/environments/fields/slug'
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',

@@ -1,9 +1,9 @@
 import React from 'react'
-import { cn } from '@/utilities/ui'
 import { Card, CardContent } from '../ui/card'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { NotebookPen, PenBoxIcon, Stars, Upload } from 'lucide-react'
+import { cn } from '@/environments/ui'
 
 const BeforeDashboard: React.FC = async () => {
   const payload = await getPayload({ config: configPromise })

@@ -3,7 +3,7 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { Card, CardContent } from '@/components/ui/card'
 import { CardBlock as CardBlockProp } from '@/payload-types'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 
 export type CardBlockProps = CardBlockProp & {
   className?: string

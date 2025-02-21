@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 

@@ -7,13 +7,13 @@ import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
-import { getServerSideURL } from './utilities/getURL'
-import { Media, Pages, Posts, Tags, Users, Comments } from './features'
-import { defaultLexical } from './utilities/fields/defaultLexical'
+import { getServerSideURL } from '@/environments/getURL'
+import { Media, Pages, Posts, Tags, Users, Comments } from './collections'
+import { defaultLexical } from '@/environments/fields/defaultLexical'
 import { Header } from './components/Header/config'
 import { Footer } from './components/Footer/config'
-import { plugins } from './utilities/plugins'
-import defaultMeta from './utilities/metaConfig'
+import { plugins } from '@/environments/plugins'
+import defaultMeta from '@/environments/metaConfig'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -66,9 +66,9 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   collections: [Pages, Posts, Media, Tags, Users, Comments],
+  globals: [Header, Footer],
   cors: [getServerSideURL()].filter(Boolean),
   csrf: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
   plugins: [...plugins],
   secret: process.env.PAYLOAD_SECRET,
   email: resendAdapter({

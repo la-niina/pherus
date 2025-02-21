@@ -1,17 +1,15 @@
 'use client'
 
-import { cn } from '@/utilities/ui'
-import useClickableCard from '@/utilities/useClickableCard'
+import { cn } from '@/environments/ui'
 import Link from 'next/link'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
-import { getServerSideURL } from '@/utilities/getURL'
-import { Badge } from '../ui/badge'
 import { Label } from '../ui/label'
 import { buttonVariants } from '../ui/button'
+import useClickableCard from '@/environments/useClickableCard'
 
 export type CardPostData = Pick<Post, 'id' | 'slug' | 'tags' | 'meta' | 'title'>
 

@@ -13,7 +13,7 @@ const config = {
     './src/pages/**/*.{ts,tsx}',
     './src/app/**/*.{ts,tsx}',
     './src/blocks/**/*.{ts,tsx}',
-    './src/utilities/**/*.{ts,tsx}',
+    './src/environments/**/*.{ts,tsx}',
     './src/features/**/*.{ts,tsx}',
   ],
   darkMode: ['selector', '[data-theme="dark"]'],

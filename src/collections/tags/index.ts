@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { anyone, authenticated } from '../access'
-import { slugField } from '@/utilities/fields/slug'
+import { slugField } from '@/environments/fields/slug/index'
 
 export const Tags: CollectionConfig = {
   slug: 'tags',

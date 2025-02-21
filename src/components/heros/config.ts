@@ -6,7 +6,7 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
-import { linkGroup } from '@/utilities/fields/linkGroup'
+import { linkGroup } from '@/environments/fields/linkGroup'
 
 export const hero: Field = {
   name: 'hero',

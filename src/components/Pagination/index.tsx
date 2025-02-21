@@ -8,7 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 

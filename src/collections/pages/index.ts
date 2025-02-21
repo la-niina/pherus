@@ -5,9 +5,9 @@ import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
-import { generatePreviewPath } from '../../utilities/generatePreviewPath'
+import { slugField } from '@/environments/fields/slug/index'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
-import { administrator, anyone, authenticated, authenticatedOrPublished } from '../access'
+import { administrator, anyone, authenticated } from '../access'
 
 import {
   MetaDescriptionField,
@@ -16,14 +16,14 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { populatePublishedAt } from '@/utilities/hooks/populatePublishedAt'
-import { slugField } from '@/utilities/fields/slug'
 import { hero } from '@/components/heros/config'
 import { Github } from '@/blocks/GithubBlock/config'
 import { Charts } from '@/blocks/ChartBlock/config'
 import { Cards } from '@/blocks/CardBlock/config'
 import { TimeLines } from '@/blocks/TimelineBlock/config'
 import { Testimonials } from '@/blocks/Testimonials/config'
+import { populatePublishedAt } from '@/environments/hooks/populatePublishedAt'
+import { generatePreviewPath } from '@/environments/generatePreviewPath'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',

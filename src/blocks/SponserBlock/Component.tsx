@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 import { Heart } from 'lucide-react'
 
 export const SponserBlock: React.FC = (props) => {

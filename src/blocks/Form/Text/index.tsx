@@ -7,7 +7,7 @@ import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
-import { cn } from '@/utilities/ui'
+import { cn } from '@/environments/ui'
 
 export const Text: React.FC<
   TextField & {
