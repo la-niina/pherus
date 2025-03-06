@@ -39,6 +39,7 @@ import { default as default_86fe5d61895b071fecf285c7208ef307 } from 'src/compone
 import { default as default_f2b7c4d9e805cbda55b6cd79c8f4c3cb } from 'src/components/Logo/Brand.tsx'
 import { default as default_1a7510af427896d367a49dbf838d2de6 } from '@/components/BeforeDashboard'
 import { default as default_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/components/BeforeLogin'
+import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -81,5 +82,6 @@ export const importMap = {
   "./components/Logo/Icons.tsx#default": default_86fe5d61895b071fecf285c7208ef307,
   "./components/Logo/Brand.tsx#default": default_f2b7c4d9e805cbda55b6cd79c8f4c3cb,
   "@/components/BeforeDashboard#default": default_1a7510af427896d367a49dbf838d2de6,
-  "@/components/BeforeLogin#default": default_8a7ab0eb7ab5c511aba12e68480bfe5e
+  "@/components/BeforeLogin#default": default_8a7ab0eb7ab5c511aba12e68480bfe5e,
+  "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
 }
