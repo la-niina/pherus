@@ -34,7 +34,7 @@ export const Email: React.FC<
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
       />
 
-      {errors[name] && <Error />}
+      {errors[name] && <Error name={name} />}
     </Width>
   )
 }

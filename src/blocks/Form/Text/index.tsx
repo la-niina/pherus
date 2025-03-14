@@ -33,7 +33,7 @@ export const Text: React.FC<
         className={cn('rounded-none border-l-yellow-500 border-l-[5px]')}
         {...register(name, { required })}
       />
-      {errors[name] && <Error />}
+      {errors[name] && <Error name={name} />}
     </Width>
   )
 }
