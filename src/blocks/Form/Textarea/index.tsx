@@ -36,7 +36,7 @@ export const Textarea: React.FC<
         {...register(name, { required: required })}
       />
 
-      {errors[name] && <Error />}
+      {errors[name] && <Error name={name} />}
     </Width>
   )
 }
