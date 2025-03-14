@@ -20,6 +20,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   const {
     alt: altFromProps,
     fill,
+    pictureClassName,
     imgClassName,
     priority,
     resource,
@@ -55,7 +56,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .join(', ')
 
   return (
-    <picture>
+    <picture className={cn(pictureClassName)}>
       <NextImage
         alt={alt || ''}
         className={cn(imgClassName)}
